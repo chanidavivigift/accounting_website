@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nida & Partner | สำนักงานบัญชีของคนขายออนไลน์</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #0066cc;
+      --blue-dark: #004fa3;
+      --blue-light: #e8f2ff;
+      --blue-mid: #1a7de8;
+      --orange: #ff8c00; /* New */
+      --orange-light: #fff5e6; /* New */
+      --white: #fafcff;
+      --gray-100: #f4f6fb;
+      --gray-200: #e8ecf4;
+      --gray-500: #8a94a8;
+      --gray-700: #4a5568;
+      --gray-900: #1a202c;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow: 0 4px 24px rgba(0,102,204,0.10);
+      --shadow-lg: 0 8px 40px rgba(0,102,204,0.16);
+    }
+
+    html { 
+      scroll-behavior: smooth; 
+      scroll-padding-top: 64px; /* เผื่อพื้นที่ให้ navbar ด้านบน 64px */
+    }
+    body {
+      font-family: 'Prompt', sans-serif;
+      background: var(--white);
+      color: var(--gray-900);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,252,255,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 0 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: var(--shadow); }
+    .nav-logo {
+      font-size: 1.25rem; font-weight: 700; color: var(--blue);
+      letter-spacing: -0.02em;
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gray-700); font-weight: 400; }
+    .nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); display: inline-block; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--gray-700); font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a.active { color: var(--blue); font-weight: 700; position: relative; }
+    .nav-links a.active::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 100%; height: 2px; background: var(--blue); border-radius: 2px; }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .nav-btn-phone {
+      display: flex; align-items: center; gap: 7px;
+      background: #ff8c00; color: #fff; border: none; border-radius: 30px;
+      padding: 8px 16px; font-size: 0.82rem; font-family: 'Prompt', sans-serif;
+      font-weight: 600; cursor: pointer; transition: all 0.2s; text-decoration: none;
+    }
+    .nav-btn-phone:hover { background: #e67e00; transform: translateY(-1px); }
+    .nav-btn-line {
+      display: flex; align-items: center; gap: 7px;
+      background: #06c755; color: #fff; border: none; border-radius: 30px;
+      padding: 8px 16px; font-size: 0.82rem; font-family: 'Prompt', sans-serif;
+      font-weight: 600; cursor: pointer; transition: all 0.2s; text-decoration: none;
+    }
+    .nav-btn-line:hover { background: #05b34c; transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--gray-700); border-radius: 2px; transition: 0.3s; }
+
+    /* ─── HERO ─── */
+    #hero {
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      background:
+        linear-gradient(160deg, rgba(0,30,80,0.92) 0%, rgba(0,60,140,0.88) 100%),
+        url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80') center/cover no-repeat;
+    }
+    .hero-left {
+      width: 60%;
+      padding: 0 6vw;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative;
+      height: 100%;
+      z-index: 2;
+    }
+    .hero-right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 0;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hero-right-photo {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .hero-right-photo img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: center;
+      display: block; transition: transform 0.6s ease;
+    }
+    .hero-right-photo:hover img { transform: scale(1.05); }
+    .hero-right-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(0,30,80,0.3));
+    }
+    /* dashboard card floating on right */
+    .hero-dash-float {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      background: rgba(255,255,255,0.95);
+      border-radius: 12px; padding: 12px 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      font-size: 0.82rem; color: var(--gray-900);
+      white-space: nowrap; z-index: 5;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding-top: 64px; /* offset for fixed nav */
+      max-width: 760px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: #fff; border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 30px; padding: 6px 18px;
+      font-size: 0.82rem; font-weight: 500; margin-bottom: 24px;
+      letter-spacing: 0.02em;
+      animation: heroUp 0.8s 0.1s both;
+    }
+    .hero-pain {
+      /* font-size: clamp(1rem, 1.8vw, 1.25rem); */
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      color: rgba(255,255,255,0.88); font-weight: 400;
+      line-height: 1.6; margin-bottom: 20px;
+      animation: heroUp 0.8s 0.2s both;
+    }
+    .hero-title {
+      font-size: clamp(2.2rem, 4.1vw, 3.2rem);
+      font-weight: 700;
+      background: linear-gradient(90deg, #ff9900 0%, #ffe05a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2; margin-bottom: 28px; text-wrap: balance;
+      animation: heroUp 0.8s 0.35s both;
+    }
+    .hero-title em { font-style: normal; color: #fff; -webkit-text-fill-color: #fff; }
+    .hero-title .highlight-word {
+      color: #ffc107; /* A bright yellow/gold color */
+      -webkit-text-fill-color: #ffc107;
+      font-weight: 900;
+      text-shadow: 0 2px 8px rgba(255, 193, 7, 0.5);
+      text-decoration: underline;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 6px;
+    }
+    .hero-sub {
+      font-size: clamp(0.9rem, 1.5vw, 1rem);
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 28px; font-weight: 300;
+      animation: heroUp 0.8s 0.4s both;
+    }
+    .hero-btns { display: flex; gap: 14px; justify-content: start; flex-wrap: wrap; animation: heroUp 0.8s 0.65s both; }
+    .btn-hero-line, .btn-hero-phone {
+      display: flex; align-items: center; gap: 14px;
+      border-radius: 18px; padding: 16px 28px;
+      text-decoration: none; transition: all 0.25s;
+      min-width: 220px;
+    }
+    .btn-hero-line {
+      background: #06c755; color: #fff;
+      box-shadow: 0 6px 24px rgba(6,199,85,0.4);
+    }
+    .btn-hero-line:hover { background: #05b34c; transform: translateY(-3px); box-shadow: 0 10px 32px rgba(6,199,85,0.5); }
+    .btn-hero-phone {
+      background: #ff8c00;
+      border: none;
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(255,140,0,0.4);
+    }
+    .btn-hero-phone:hover { background: #e67e00; transform: translateY(-3px); box-shadow: 0 10px 32px rgba(255,140,0,0.5); }
+    .btn-hero-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .btn-hero-main { font-size: 1rem; font-weight: 700; line-height: 1.2; }
+    .btn-hero-sub { font-size: 0.78rem; opacity: 0.8; margin-top: 2px; font-weight: 400; }
+
+    @media (max-width: 520px) {
+      .btn-hero-line, .btn-hero-phone { min-width: unset; width: 100%; max-width: 320px; }
+    }
+    .btn-primary {
+      background: #fff; color: var(--blue);
+      border: none; border-radius: 30px;
+      padding: 14px 28px; font-size: 0.95rem;
+      font-family: 'Prompt', sans-serif; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .btn-outline {
+      background: transparent; color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.6);
+      border-radius: 30px; padding: 14px 28px;
+      font-size: 0.95rem; font-family: 'Prompt', sans-serif;
+      font-weight: 500; cursor: pointer; transition: all 0.2s;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+    .hero-stats {
+      margin-top: 40px;
+      display: flex; gap: 32px; flex-wrap: wrap;
+      animation: heroUp 0.8s 0.7s both;
+    }
+
+    /* contact strip in hero */
+    .hero-contacts {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; flex-wrap: wrap;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 16px; padding: 4px;
+      margin-bottom: 28px;
+      animation: heroUp 0.8s 0.5s both;
+    }
+    .hero-contact-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 20px; border-radius: 12px;
+      text-decoration: none; color: #fff;
+      transition: background 0.2s;
+      flex: 1; min-width: 160px; justify-content: center;
+    }
+    .hero-contact-item:hover { background: rgba(255,255,255,0.15); }
+    .hero-contact-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .hero-contact-label { font-size: 0.72rem; opacity: 0.7; margin-bottom: 2px; line-height: 1; text-shadow: none; }
+    .hero-contact-val { font-size: 0.88rem; font-weight: 600; line-height: 1.2; }
+    .hero-contact-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.25); flex-shrink: 0; }
+
+    @media (max-width: 640px) {
+      .hero-contacts { flex-direction: column; padding: 8px; gap: 2px; }
+      .hero-contact-divider { width: 80%; height: 1px; }
+      .hero-contact-item { justify-content: flex-start; min-width: unset; width: 100%; }
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-num { font-size: 1.8rem; font-weight: 700; color: #fff; line-height: 1; }
+    .hero-stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.75); margin-top: 4px; }
+
+    @keyframes heroUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 60px 5vw; }
+    .section-tag {
+      display: inline-block;
+      background: var(--blue-light); color: var(--blue);
+      border-radius: 30px; padding: 5px 16px;
+      font-size: 1.8rem; font-weight: 600;
+      margin-bottom: 14px; letter-spacing: 0.04em;
+    }
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700; color: var(--gray-900);
+      line-height: 1.3; margin-bottom: 12px; text-wrap: balance;
+    }
+    .section-sub {
+      font-size: 1rem; color: var(--gray-500);
+      font-weight: 300; max-width: 500px;
+    }
+
+    /* ─── PRICING TITLE OVERRIDE ─── */
+    .pricing-title {
+      font-size: clamp(2rem, 4.5vw, 3.2rem) !important;
+      font-weight: 900 !important;
+      line-height: 1.2 !important;
+      letter-spacing: -0.02em;
+    }
+    .pricing-title-accent {
+      color: #ff8c00; /* สีส้ม */
+      position: relative; 
+      display: inline-block;
+      /* เพิ่มขอบฟุ้งๆ ให้ตัวอักษรดูมีมิติ */
+      text-shadow: 0 0 1px rgba(255,140,0,0.4), 0 0 15px rgba(255,140,0,0.1);
+    }
+    .pricing-title-blue {
+      color: var(--blue-dark);
+      position: relative;
+      display: inline-block;
+    }
+    .pricing-title-accent::after {
+      content: '';
+      position: absolute; left: 0; bottom: 2px;
+      width: 100%; height: 5px;
+      background: linear-gradient(90deg, #ff8c00, #ffca28);
+      border-radius: 4px;
+      opacity: 0.6;
+    }
+    #pricing .section-tag {
+      background: #ff8c00; color: #fff;
+      font-size: 1.10rem; font-weight: 700;
+      letter-spacing: 0.04em;
+      box-shadow: 0 4px 12px rgba(255,140,0,0.3);
+    }
+    .section-header { margin-bottom: 48px; }
+
+    /* เพิ่มคลาสสำหรับเน้นข้อความส้มในกล่อง */
+    .highlight-orange {
+      color: #ff8c00;
+      font-weight: 700;
+      /* ขอบตัวอักษรเบาๆ ให้ข้อความดูเด้ง */
+      text-shadow: 0.5px 0.5px 0px rgba(0,0,0,0.05);
+    }
+
+    /* ─── SERVICES ─── */
+    #services {
+      background:
+        linear-gradient(150deg, rgba(0,20,70,0.72) 0%, rgba(0,55,150,0.68) 50%, rgba(0,80,200,0.65) 100%),
+        url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80') center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
+    #services::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 45% at 10% 20%, rgba(80,140,255,0.15) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 55% at 90% 80%, rgba(0,40,140,0.2) 0%, transparent 65%);
+      pointer-events: none; z-index: 0;
+    }
+    #services .section-header { position: relative; z-index: 1; }
+    #services .section-title { color: #fff; }
+    #services .section-sub { color: rgba(255,255,255,0.65); }
+    /* #services .section-tag {
+      background: rgba(255,224,90,0.18);
+      color: #ffe05a;
+      border: 1px solid rgba(255,224,90,0.3);
+    } */
+    #services .section-tag {
+      /* background: #fdd835; */
+      background: #fdd835;
+      color: #303f9f;
+      border: 1px solid rgba(255,224,90,0.3);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      position: relative; z-index: 1;
+    }
+    .service-card {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.95);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow:
+        0 8px 32px rgba(0,0,0,0.18),
+        inset 0 1px 0 rgba(255,255,255,1);
+      transition: all 0.4s cubic-bezier(0.34,1.4,0.64,1);
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #ffe05a 0%, #ffaa00 100%);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      background: rgba(255,255,255,0.97);
+      border-color: rgba(255,255,255,1);
+      box-shadow:
+        0 20px 56px rgba(0,0,0,0.22),
+        inset 0 1px 0 rgba(255,255,255,1);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 100%; height: 155px; border-radius: 10px;
+      display: block;
+      margin-bottom: 18px; overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .service-icon::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(0,20,60,0.45));
+      z-index: 1;
+    }
+    .service-icon img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
+    }
+    .service-card:hover .service-icon img { transform: scale(1.08); }
+    .service-name {
+      font-size: 1.30rem; font-weight: 700;
+      color: var(--blue-dark);
+      margin-bottom: 10px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .service-name::after {
+      content: '→'; font-size: 1rem; color: var(--blue);
+      opacity: 0; transform: translateX(-8px); transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+    .service-card:hover .service-name::after { opacity: 1; transform: translateX(0); }
+    .service-desc {
+      font-size: 1rem;
+      color: var(--gray-700);
+      font-weight: 600; line-height: 1.65;
+    }
+
+    /* ─── WHY ─── */
+    #why { background: #fff; }
+    .why-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+      max-width: 1060px; margin: 0 auto;
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .why-card {
+      padding: 20px 22px; border-radius: var(--radius);
+      background: var(--gray-100);
+      display: flex; gap: 16px; align-items: flex-start;
+      transition: background 0.3s, transform 0.35s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.3s;
+    }
+    .why-card:hover { background: var(--blue-light); transform: translateX(6px); box-shadow: var(--shadow); }
+    .why-check {
+      width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+      background: var(--blue); display: flex;
+      align-items: center; justify-content: center;
+      color: #fff; font-size: 1rem;
+      transition: transform 0.3s;
+    }
+    .why-card:hover .why-check { transform: scale(1.15) rotate(5deg); }
+    .why-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+    .why-desc { font-size: 0.84rem; color: var(--gray-500); font-weight: 300; }
+
+    /* why illustration */
+    .why-illu { position: relative; }
+    .why-illu-main {
+      border-radius: 20px; overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      background: var(--gray-100);
+    }
+    .why-illu-badge {
+      position: absolute; bottom: -16px; right: -16px;
+      background: #fff; border-radius: 14px; padding: 14px 18px;
+      box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 12px;
+      border: 1px solid var(--gray-200);
+    }
+    .why-illu-badge-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--blue-light); display: flex;
+      align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .why-illu-badge-val { font-size: 1rem; font-weight: 700; color: var(--blue); line-height: 1; }
+    .why-illu-badge-label { font-size: 0.72rem; color: var(--gray-500); margin-top: 2px; }
+
+    @media (max-width: 900px) {
+      .why-layout { grid-template-columns: 1fr; }
+      .why-illu { display: none; }
+    }
+
+    /* ─── PRICING PROMO BANNER ─── */
+    .pricing-promo-banner {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 1200px; margin: 0 auto 40px;
+      border-radius: 16px; overflow: hidden;
+      display: flex; align-items: center; gap: 0;
+      background: linear-gradient(110deg, #0d0d1a 0%, #0f2057 55%, #0a3a8a 100%);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.06);
+      min-height: 88px;
+    }
+    .pricing-promo-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 100% at 20% 50%, rgba(0,80,200,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .promo-ribbon-wrap {
+      position: relative; z-index: 2;
+      flex-shrink: 0;
+      padding: 0 0 0 28px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .promo-ribbon {
+      background: linear-gradient(135deg, #b91c1c 0%, #dc2626 60%, #b91c1c 100%);
+      color: #fff;
+      font-size: 1.1rem; font-weight: 900;
+      letter-spacing: 0.08em;
+      padding: 10px 28px 10px 18px;
+      clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%);
+      white-space: nowrap;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+      position: relative;
+    }
+    .promo-ribbon::after {
+      content: '';
+      position: absolute; top: -6px; right: -2px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 0 2px #b91c1c, 0 0 8px rgba(255,255,255,0.5);
+    }
+    .promo-arrows {
+      display: flex; gap: 3px; align-items: center;
+    }
+    .promo-arrow-shape {
+      width: 0; height: 0;
+      border-top: 13px solid transparent;
+      border-bottom: 13px solid transparent;
+      border-left: 11px solid;
+    }
+    .promo-arrow-shape:nth-child(1) { border-left-color: rgba(185,28,28,0.4); }
+    .promo-arrow-shape:nth-child(2) { border-left-color: rgba(220,38,38,0.65); }
+    .promo-arrow-shape:nth-child(3) { border-left-color: rgba(248,60,60,0.9); }
+
+    .promo-content {
+      position: relative; z-index: 2;
+      padding: 16px 28px 16px 20px;
+      flex: 1;
+    }
+    .promo-content-title {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 800; color: #ffa500;
+      line-height: 1.2; margin-bottom: 4px;
+    }
+    .promo-content-sub {
+      font-size: clamp(0.8rem, 1.3vw, 0.9rem);
+      color: rgba(255,255,255,0.75);
+      font-weight: 300; line-height: 1.4;
+    }
+    .promo-content-sub strong { color: #fff; font-weight: 600; }
+    .promo-pulse {
+      display: inline-block;
+      background: linear-gradient(135deg, #ffa500, #ffe05a);
+      color: #1a202c; font-size: 0.7rem; font-weight: 700;
+      padding: 2px 10px; border-radius: 20px;
+      margin-left: 8px; vertical-align: middle;
+      animation: pulse-badge 2s ease-in-out infinite;
+    }
+    @keyframes pulse-badge {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,165,0,0.5); }
+      50% { box-shadow: 0 0 0 5px rgba(255,165,0,0); }
+    }
+
+    @media (max-width: 640px) {
+      .pricing-promo-banner { flex-direction: column; align-items: flex-start; min-height: unset; }
+      .promo-ribbon-wrap { padding: 20px 20px 0; }
+      .promo-content { padding: 12px 20px 20px; }
+    }
+
+    /* ─── PRICING ─── */
+    #pricing { background: var(--gray-100);
+      background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=80');
+      background-size: cover; background-position: center;
+      position: relative;
+  overflow: hidden;
+    }
+    #pricing::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(244,246,251,0.93);
+      z-index: 0;
+    }
+    #pricing > * { position: relative; z-index: 1; }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px; max-width: 1200px; margin: 0 auto;
+    }
+    .pricing-card {
+      background: #fff; border-radius: var(--radius);
+      padding: 32px 28px;
+      border: 1.5px solid var(--gray-200);
+      transition: transform 0.35s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.3s;
+      position: relative;
+    }
+    .pricing-card.blue-top-orange-details {
+      border-top: 6px solid var(--blue);
+    }
+    .pricing-card.blue-top-orange-details .pricing-tier {
+      color: var(--blue);
+      opacity: 1;
+      font-weight: 700;
+    }
+    .pricing-card.blue-top-orange-details .pricing-divider {
+      background: rgba(0, 102, 204, 0.15);
+      height: 2px;
+    }
+    .pricing-card.blue-top-orange-details .pricing-price span {
+      color: var(--blue);
+      opacity: 0.8;
+    }
+    .pricing-card.featured {
+      background: linear-gradient(160deg, #0d0d1a 0%, #0f2057 55%, #0a3a8a 100%);
+      border-color: transparent; color: #fff;
+      transform: scale(1.06) translateY(-8px);
+      box-shadow:
+        0 20px 60px rgba(10,58,138,0.45),
+        0 0 0 3px rgba(15,32,87,0.4),
+        0 0 40px rgba(10,58,138,0.2);
+      z-index: 2;
+    }
+    .pricing-card:not(.featured):hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .pricing-card.featured:hover { transform: scale(1.06) translateY(-12px); box-shadow: 0 28px 72px rgba(10,58,138,0.55), 0 0 0 3px rgba(15,32,87,0.5); }
+    .pricing-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: #fff;
+      color: #0a3a8a;
+      border-radius: 20px; padding: 5px 18px;
+      font-size: 0.8rem; font-weight: 800; white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(10,58,138,0.3);
+      letter-spacing: 0.02em;
+    }
+    .pricing-card.featured .pricing-tier {
+      font-size: 1.9rem; font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 6px;
+    }
+    .pricing-card.featured .pricing-tier2 {
+      font-size: 0.9rem; font-weight: 600;
+      color: rgba(255,255,255,0.85);
+    }
+    .pricing-card.featured .pricing-price {
+      font-size: 3.5rem; font-weight: 900;
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      line-height: 1;
+    }
+    .pricing-card.featured .pricing-price span { font-size: 1.5rem; font-weight: 500; }
+  .strikethrough-diagonal {
+    position: relative;
+    display: inline-block;
+    color: rgba(255,255,255,0.6); /* ปรับสีตัวเลขให้จางลง */
+  }
+  .strikethrough-diagonal::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: -5%;
+    width: 110%; height: 5px;
+    background-color: #ff4d4f; /* สีแดงสำหรับขีดทับ */
+    transform: translateY(-50%) rotate(-15deg); /* หมุนเส้นให้เฉียง */
+    border-radius: 4px;
+  }
+    .pricing-card.featured .pricing-desc { color: #fcdc4c; font-weight: 400; }
+    .pricing-card.featured .pricing-desc2 { color: rgba(255,255,255,0.9); font-weight: 400; }
+    .pricing-card.featured .pricing-divider { background: rgba(255,255,255,0.3); }
+    .pricing-card.featured .pricing-features li::before { color: #fff; }
+    .pricing-card.featured .pricing-features li { color: rgba(255,255,255,0.95); }
+
+    /* featured bonus strip */
+    .featured-bonus {
+      background: rgba(0,0,0,0.18);
+      border-radius: 10px; padding: 12px 14px;
+      margin-bottom: 20px; text-align: center;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .featured-bonus-label {
+      font-size: 0.72rem; color: rgba(255,255,255,0.8); font-weight: 400; margin-bottom: 4px;
+    }
+    .featured-bonus-text {
+      font-size: 0.88rem; font-weight: 700; color: #fff;
+      line-height: 1.4;
+    }
+    .featured-bonus .pricing-features {
+      gap: 2px;
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+
+    .pricing-tier { font-size: 1.85rem; font-weight: 500; opacity: 0.7; margin-bottom: 6px; }
+    .pricing-tier2 { font-size: 0.85rem; font-weight: 500; opacity: 0.7; }
+    .pricing-price { font-size: 3.2rem; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+    .pricing-price span { font-size: 1.5rem; font-weight: 400; opacity: 0.7; }
+    .pricing-desc { font-size: 1.20rem; margin-bottom: 24px; }
+    .pricing-desc2 { font-size: 0.85rem; opacity: 0.75; margin-bottom: 24px; }
+    .pricing-divider { height: 1px; background: rgba(0,0,0,0.08); margin-bottom: 20px; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .pricing-features li { font-size: 1.05rem; display: flex; align-items: flex-start; gap: 10px; }
+    .pricing-features li::before { content: '✓'; font-weight: 700; color: var(--blue); flex-shrink: 0; margin-top: 1px; }
+    .btn-pricing {
+      width: 100%; padding: 14px; border-radius: 30px; font-size: 1rem;
+      font-family: 'Prompt', sans-serif; font-weight: 700;
+      cursor: pointer; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: none;
+      display: block; text-align: center; text-decoration: none;
+    }
+    /* ปุ่มสีน้ำเงินสำหรับกล่องซ้าย-ขวา */
+    .btn-pricing-outline {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(0, 102, 204, 0.2);
+    }
+    .btn-pricing-outline:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 102, 204, 0.35);
+      filter: brightness(1.1);
+    }
+    /* ปุ่มสีส้มสำหรับกล่องกลาง (เด่นที่สุด) */
+    .btn-pricing-solid {
+      background: linear-gradient(135deg, #ff8c00 0%, #ff6200 100%);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+    }
+    .btn-pricing-solid:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 140, 0, 0.5);
+      background: linear-gradient(135deg, #ff9d24 0%, #ff7300 100%);
+    }
+
+    /* ─── PROCESS STEPS ─── */
+    #team {
+      background: #fff;
+      position: relative; overflow: hidden;
+      padding-bottom: 96px;
+    }
+
+    /* Diagonal accent behind the steps */
+    #team::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0; height: 220px;
+      background: linear-gradient(135deg, #f0f5ff 0%, #e8f2ff 100%);
+      clip-path: polygon(0 40%, 100% 0%, 100% 100%, 0% 100%);
+      z-index: 0;
+    }
+
+    #team .section-header { position: relative; z-index: 1; }
+    #team .section-title { color: var(--blue-dark); }
+    #team .section-sub { color: var(--gray-500); }
+    #team .section-tag {
+      background: var(--blue-light);
+      color: var(--blue); border: none;
+    }
+
+    .process-wrapper {
+      max-width: 1060px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+
+    /* ── Timeline track ── */
+    .process-steps {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin-bottom: 46px;
+      position: relative;
+      padding: 0 0 0 0;
+    }
+
+    /* The gradient line running through all nodes */
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: 32px; right: 32px;
+      height: 3px;
+      border-radius: 3px;
+      background: linear-gradient(90deg,
+        #003d99 0%,
+        #0066cc 33%,
+        #ff8c00 66%,
+        #ffca28 100%
+      );
+      z-index: 0;
+    }
+
+    /* Each step takes equal width */
+    .process-step {
+      flex: 1;
+      display: flex; flex-direction: column;
+      align-items: center; text-align: center;
+      padding: 0 12px;
+      position: relative; z-index: 1;
+    }
+
+    /* Step number — the big circle on the line */
+    .process-step-num {
+      width: 64px; height: 64px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; font-weight: 900;
+      margin-bottom: 24px; flex-shrink: 0;
+      position: relative;
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      border: 3px solid #fff;
+    }
+    .process-step:hover .process-step-num {
+      transform: scale(1.12);
+    }
+
+    /* Per-step gradient colours */
+    .process-step:nth-child(1) .process-step-num {
+      background: linear-gradient(135deg, #003d99, #0055cc);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(0,61,153,0.45);
+    }
+    .process-step:nth-child(2) .process-step-num {
+      background: linear-gradient(135deg, #0055cc, #0077ee);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(0,85,204,0.4);
+    }
+    .process-step:nth-child(3) .process-step-num {
+      background: linear-gradient(135deg, #0077ee, #2090ff);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(0,119,238,0.38);
+    }
+    .process-step:nth-child(4) .process-step-num {
+      background: linear-gradient(135deg, #ff8c00, #ffca28);
+      color: #1a202c;
+      box-shadow: 0 6px 24px rgba(255,140,0,0.5);
+    }
+
+    /* Card below the node */
+    .process-step-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 20px 18px;
+      border: 1.5px solid transparent;
+      box-shadow: 0 4px 20px rgba(0,30,100,0.08);
+      width: 100%;
+      transition: transform 0.35s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.3s, border-color 0.3s;
+    }
+  .process-step:nth-child(1) .process-step-card { 
+    border-color: rgba(0,61,153,0.7);
+    background: linear-gradient(160deg, #7ab0ff 0%, #fff 90%);
+  }
+  .process-step:nth-child(2) .process-step-card { 
+    border-color: rgba(0,102,204,0.7);
+    background: linear-gradient(160deg, #8bc2ff 0%, #fff 90%);
+  }
+  .process-step:nth-child(3) .process-step-card { 
+    border-color: rgba(0,119,238,0.7);
+    background: linear-gradient(160deg, #a3d1ff 0%, #fff 90%);
+  }
+
+    .process-step:hover .process-step-card {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 36px rgba(0,40,120,0.14);
+    }
+    .process-step:nth-child(1):hover .process-step-card { border-color: #003d99; }
+    .process-step:nth-child(2):hover .process-step-card { border-color: #0066cc; }
+    .process-step:nth-child(3):hover .process-step-card { border-color: #0077ee; }
+    .process-step:nth-child(4) .process-step-card {
+      border-color: rgba(255,140,0,0.7);
+      background: linear-gradient(160deg, #ffc480 0%, #fff 90%);
+    }
+    .process-step:nth-child(4):hover .process-step-card {
+      border-color: #ff8c00;
+      box-shadow: 0 14px 36px rgba(255,140,0,0.16);
+    }
+
+    /* Step label above the number */
+    .process-step-label {
+      font-size: 0.68rem; 
+      font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      /* color: var(--gray-500); */
+      margin-bottom: 4px;
+    }
+
+    .process-step-title {
+      font-size: 1.40rem; font-weight: 700;
+      color: var(--gray-900); line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    .process-step-sub {
+      font-size: 1rem; 
+      color: var(--gray-600);
+      font-weight: 400; line-height: 1.6;
+    }
+
+    /* Tagline & CTA */
+    .process-tagline {
+      text-align: center;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      margin-bottom: 32px; line-height: 1.5;
+      position: relative; z-index: 1;
+    }
+    .process-tagline .section-title {
+      color: #000000;
+    }
+    .process-tagline em { font-style: normal; color: #002880; }
+    .process-cta {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; flex-wrap: wrap;
+      position: relative; z-index: 1;
+    }
+
+    @media (max-width: 700px) {
+      .process-steps {
+        flex-direction: column; align-items: stretch; gap: 0;
+      }
+      .process-steps::before {
+        left: 32px; right: auto; top: 0; bottom: 0; width: 3px; height: auto;
+        background: linear-gradient(180deg,
+          #003d99 0%, #0066cc 33%, #ff8c00 66%, #ffca28 100%
+        );
+      }
+      .process-step {
+        flex-direction: row; text-align: left;
+        padding: 0 0 32px 0; align-items: flex-start;
+      }
+      .process-step-num { margin-bottom: 0; margin-right: 20px; flex-shrink: 0; }
+      .process-step-card { flex: 1; }
+      #team::after { display: none; }
+    }
+    .btn-process-phone {
+      display: flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, #ffa500, #ffca28);
+      color: #1a202c; border: none; border-radius: 50px;
+      padding: 13px 28px; font-size: 0.95rem;
+      font-family: 'Prompt', sans-serif; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      box-shadow: 0 6px 20px rgba(255,165,0,0.4);
+      transition: all 0.25s;
+    }
+    .btn-process-phone:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(255,165,0,0.5); }
+    .btn-process-line {
+      display: flex; align-items: center; gap: 10px;
+      background: #06c755; color: #fff; border: none; border-radius: 50px;
+      padding: 13px 28px; font-size: 0.95rem;
+      font-family: 'Prompt', sans-serif; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      box-shadow: 0 6px 20px rgba(6,199,85,0.35);
+      transition: all 0.25s;
+    }
+    .btn-process-line:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(6,199,85,0.5); }
+
+
+
+    /* ─── WHY US HERO ─── */
+    #reviews {
+      background:
+        linear-gradient(160deg, rgba(0,15,50,0.82) 0%, rgba(0,40,110,0.78) 100%),
+        url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600&q=80') center/cover no-repeat;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    #reviews::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(0,80,200,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #reviews .section-header { position: relative; z-index: 1; margin-bottom: 40px; }
+    #reviews .section-title {
+      color: #ffe05a;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+    }
+    #reviews .section-tag { background: rgba(255,224,90,0.15); color: #ffe05a; border: 1px solid rgba(255,224,90,0.3); }
+
+    .whyus-points {
+      position: relative; z-index: 1;
+      max-width: 640px; margin: 0 auto 40px;
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .whyus-point { padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .whyus-point:last-child { border-bottom: none; padding-bottom: 0; }
+    .whyus-point-title {
+      font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+      font-weight: 700; color: #fff;
+      margin-bottom: 8px; line-height: 1.3;
+    }
+    .whyus-point-desc {
+      font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+      color: rgba(255,255,255,0.72);
+      font-weight: 300; line-height: 1.6;
+    }
+    .whyus-divider { display: none; }
+    .whyus-cta {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .whyus-cta-label {
+      font-size: 1rem; font-weight: 500; color: rgba(255,255,255,0.85);
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background-color: var(--gray-100);
+      background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80');
+      background-size: cover; background-position: center top;
+      position: relative;
+    }
+    #contact::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(244,246,251,0.92);
+      z-index: 0;
+    }
+    #contact > * { position: relative; z-index: 1; }
+    .contact-wrap {
+      display: flex; justify-content: center;
+      max-width: 800px; margin: 0 auto;
+    }
+    .contact-info {
+      width: 100%;
+    }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px 40px; margin: 0 auto; width: fit-content;
+    }
+    .contact-item { display: flex; gap: 14px; align-items: flex-start; }
+    .contact-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--blue-light); display: flex;
+      align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .contact-item:hover .contact-icon { transform: scale(1.1); background: var(--blue); }
+    .contact-item-label { font-size: 0.8rem; color: var(--gray-500); margin-bottom: 2px; }
+    .contact-item-val { font-size: 0.95rem; font-weight: 500; }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--gray-900); color: rgba(255,255,255,0.75); padding: 56px 5vw 28px; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px; margin-bottom: 40px;
+    }
+    .footer-logo { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .footer-logo span { color: rgba(255,255,255,0.5); font-weight: 300; }
+    .footer-tagline { font-size: 0.875rem; line-height: 1.6; margin-bottom: 20px; }
+    .footer-social { display: flex; gap: 10px; }
+    .footer-social a {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(255,255,255,0.1); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 0.9rem; text-decoration: none; color: #fff;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .footer-social a:hover { background: var(--blue); transform: translateY(-2px); }
+    .footer-col h4 { font-size: 0.875rem; font-weight: 600; color: #fff; margin-bottom: 14px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul li a { font-size: 0.85rem; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: #fff; }
+    .footer-hours { font-size: 0.85rem; line-height: 2; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-copy { font-size: 0.8rem; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 0.8rem; color: rgba(255,255,255,0.5); text-decoration: none; }
+    .footer-links a:hover { color: #fff; }
+
+    /* ─── SCROLL ANIMATIONS ─── */
+    /* base hidden states */
+    .reveal             { opacity: 0; transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22,1,0.36,1); }
+    .reveal.from-bottom { transform: translateY(36px); }
+    .reveal.from-left   { transform: translateX(-40px); }
+    .reveal.from-right  { transform: translateX(40px); }
+    .reveal.scale-up    { transform: scale(0.88); }
+    .reveal.visible     { opacity: 1; transform: none; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero-right { display: none; }
+      .hero-left { width: 100%; padding: 0 6vw; }
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 60px 5vw; }
+
+      /* nav */
+      .nav-links, .nav-right { display: none; }
+      .hamburger { display: flex; }
+      nav.open .nav-links {
+        display: flex; flex-direction: column;
+        position: absolute; top: 64px; left: 0; right: 0;
+        background: var(--white); padding: 20px 5vw;
+        border-bottom: 1px solid var(--gray-200); gap: 16px;
+      }
+      nav.open .nav-right {
+        display: flex; flex-direction: column;
+        position: absolute; top: auto; left: 0; right: 0;
+        padding: 8px 5vw 16px;
+        background: var(--white);
+      }
+
+      /* hero */
+      .hero-right { display: none; }
+      .hero-left { width: 100%; padding: 0 6vw; }
+      .hero-pain br { display: none; }
+      .hero-btns { flex-direction: column; align-items: flex-start; }
+      .hero-stats { gap: 20px; }
+      .hero-stat-num { font-size: 1.5rem; }
+
+      /* services */
+      .services-grid { grid-template-columns: 1fr; }
+
+      /* why */
+      .why-layout { grid-template-columns: 1fr; }
+      .why-illu { display: none; }
+
+      /* pricing */
+      .pricing-grid { grid-template-columns: 1fr; max-width: 450px; margin: 0 auto; }
+      .pricing-card.featured { transform: scale(1); }
+
+      /* team */
+      .team-grid { grid-template-columns: 1fr 1fr; }
+
+      /* reviews */
+      .reviews-grid { grid-template-columns: 1fr; }
+
+      /* contact */
+      .contact-grid { grid-template-columns: 1fr; gap: 20px; }
+
+      /* footer */
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 48px 4vw; }
+      nav { padding: 0 4vw; }
+
+      /* hero */
+      .hero-stats { gap: 14px; }
+      .hero-stat { min-width: 72px; }
+
+      /* services */
+      .service-card { padding: 20px 16px; }
+
+      /* team */
+      .team-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .team-card { padding: 18px 12px; }
+      .team-avatar { width: 60px; height: 60px; font-size: 1.4rem; }
+
+      /* pricing */
+      .pricing-card { padding: 24px 18px; }
+
+      /* reviews */
+      .review-card { padding: 18px; }
+
+
+      /* footer */
+      .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+
+    /* ─── COOKIE BANNER STYLES ─── */
+    #cookie-banner {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 9999;
+      background: rgba(15, 23, 42, 0.97);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 0;
+      transform: translateY(100%);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.25);
+    }
+    #cookie-banner.show { transform: translateY(0); }
+    .cookie-inner { max-width: 1200px; margin: 0 auto; padding: 20px 5vw; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .cookie-icon { font-size: 2rem; flex-shrink: 0; }
+    .cookie-text { flex: 1; min-width: 260px; }
+    .cookie-text h4 { font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
+    .cookie-text p { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0; font-weight: 300; }
+    .cookie-text p a { color: #60a5fa; text-decoration: none; }
+    .cookie-text p a:hover { text-decoration: underline; }
+    .cookie-actions { display: flex; gap: 10px; flex-shrink: 0; flex-wrap: wrap; align-items: center; }
+    .btn-cookie-settings, .btn-cookie-reject {
+      background: transparent; border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.75); padding: 9px 18px; border-radius: 30px;
+      font-size: 0.82rem; font-family: 'Prompt', sans-serif; font-weight: 500; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-cookie-settings:hover, .btn-cookie-reject:hover { border-color: rgba(255,255,255,0.5); color: #fff; background: rgba(255,255,255,0.05); }
+    .btn-cookie-accept {
+      background: var(--blue); border: none; color: #fff; padding: 9px 22px; border-radius: 30px;
+      font-size: 0.82rem; font-family: 'Prompt', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-cookie-accept:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+    /* ─── COOKIE MODAL STYLES ─── */
+    #cookie-modal {
+      position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center;
+      padding: 20px; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    #cookie-modal.show { opacity: 1; pointer-events: all; }
+    .cookie-modal-box {
+      background: #fff; border-radius: 24px; width: 100%; max-width: 500px; padding: 32px;
+      transform: scale(0.9); transition: transform 0.3s;
+    }
+    #cookie-modal.show .cookie-modal-box { transform: scale(1); }
+    .cookie-modal-box h3 { font-size: 1.2rem; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+    .cookie-modal-box p { font-size: 0.88rem; color: var(--gray-700); margin-bottom: 24px; font-weight: 300; }
+    .cookie-toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--gray-200); }
+    .cookie-toggle-row:last-of-type { border-bottom: none; }
+    .cookie-toggle-info strong { font-size: 0.9rem; color: var(--gray-900); display: block; }
+    .cookie-toggle-info span { font-size: 0.78rem; color: var(--gray-500); }
+    
+    /* Toggle switch */
+    .toggle-switch { position: relative; width: 44px; height: 24px; display: inline-block; }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider { position: absolute; inset: 0; background: #cbd5e0; border-radius: 24px; cursor: pointer; transition: 0.3s; }
+    .toggle-slider::before { content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
+    .toggle-switch input:checked + .toggle-slider { background: var(--blue); }
+    .toggle-switch input:checked + .toggle-slider::before { transform: translateX(20px); }
+    .toggle-switch input:disabled + .toggle-slider { opacity: 0.6; cursor: not-allowed; }
+
+    .cookie-modal-btns { display: flex; gap: 12px; margin-top: 24px; }
+    .btn-modal-save { flex: 1; background: var(--blue); color: #fff; border: none; padding: 12px; border-radius: 30px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+    .btn-modal-save:hover { background: var(--blue-dark); }
+
+    @media (max-width: 600px) {
+      .cookie-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .cookie-actions { width: 100%; }
+      .cookie-actions button { flex: 1; }
+      .cookie-icon { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <!-- <span class="nav-logo-dot"></span> -->
+    NIDA Tax <span>& Accounting</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#pricing">ราคา</a></li>
+    <li><a href="#services">บริการ</a></li>
+    <li><a href="#team">ขั้นตอนจดทะเบียน</a></li>
+    <li><a href="#reviews">ทำไมต้องเรา</a></li>
+    <li><a href="#contact">ติดต่อ</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:0828949224" class="nav-btn-phone">📞 082-894-9224</a>
+    <a href="https://line.me/ti/p/~@830avuqn" target="_blank" class="nav-btn-line">💬 LINE</a>
+  </div>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <!-- LEFT -->
+  <div class="hero-left">
+    <div class="hero-content">
+      <p class="hero-pain"><b>หมดปัญหาเรื่องบัญชี ภาษี วุ่นวาย ไม่รู้จะเริ่มต้นยังไง <br>ไม่มีเวลาจัดการ</b></p>
+      <h1 class="hero-title">ให้ Nida Tax &amp; Accounting<em><br>จดทะเบียนบริษัท <span style="font-size: 3.8rem;" class="highlight-word">ฟรี!</span><br>เมื่อทำบัญชีรายเดือนกับเรา<br>ครบทุกอย่าง จบในที่เดียว</em></h1>
+      <div class="hero-btns">
+        <a href="tel:0828949224" class="btn-hero-phone">
+          <span class="btn-hero-icon">📞</span>
+          <div>
+            <div class="btn-hero-main">082-894-9224</div>
+            <div class="btn-hero-sub">โทรได้เลยทันที</div>
+          </div>
+        </a>
+        <a href="https://line.me/ti/p/~@830avuqn" target="_blank" class="btn-hero-line">
+          <span class="btn-hero-icon">💬</span>
+          <div>
+            <div class="btn-hero-main">ปรึกษาฟรีทาง LINE</div>
+            <div class="btn-hero-sub">ตอบไว 24 ชั่วโมง</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- RIGHT: photo collage -->
+  <div class="hero-right">
+    <div class="hero-right-photo">
+      <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80" alt="ค้อนตุลาการและตาชั่งกฎหมาย" loading="lazy">
+      <div class="hero-right-overlay"></div>
+    </div>
+    <div class="hero-right-photo">
+      <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&q=80" alt="ทนายความให้คำปรึกษา" loading="lazy">
+      <div class="hero-right-overlay"></div>
+    </div>
+    <div class="hero-right-photo">
+      <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80" alt="เซ็นเอกสารสัญญาทางกฎหมาย" loading="lazy">
+      <div class="hero-right-overlay"></div>
+    </div>
+    <div class="hero-right-photo" style="position:relative;">
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="ห้องสมุดหนังสือกฎหมาย" loading="lazy">
+      <div class="hero-right-overlay"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRICING ─── -->
+<section id="pricing">
+  <div class="section-header reveal from-bottom" style="text-align:center;">
+    <span class="section-tag">🔥 แนะนำสำหรับคุณ</span>
+    <h2 class="section-title pricing-title">
+      <span class="pricing-title-blue">จ่ายน้อย ได้มากกว่า</span><br>
+      <span class="pricing-title-blue">บริการเต็ม</span> <span class="pricing-title-accent">ราคาคุ้มค่าที่สุด</span>
+    </h2>
+  </div>
+  <div class="pricing-grid">
+    <!-- Starter Card with Blue Top and Orange Details -->
+    <div class="pricing-card reveal scale-up blue-top-orange-details">
+      <div class="pricing-tier2">จดทะเบียนเพียงครั้งเดียว</div>
+      <div class="pricing-tier">Starter</div>
+      <!-- <div class="pricing-price">2,500 <span>บ./เดือน</span></div> -->
+      <div class="pricing-price">5,500 <span>บาท</span></div>
+      <!-- <div class="pricing-desc2">จดทะเบียนเพียงครั้งเดียว</div> -->
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>จดทะเบียนบริษัท <span class="highlight-orange">ครบวงจร</span></li>
+        <li>จองชื่อบริษัท</li>
+        <li>รหัส RD/DBD</li>
+      </ul>
+      <div style="background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 8px; padding: 10px 14px; margin-bottom: 20px; text-align: center;">
+        <div style="font-size: 0.85rem; color: var(--gray-700); font-weight: 400;">* ไม่รวมค่าธรรมเนียมกรมพัฒนาธุรกิจการค้า</div>
+      </div>
+      <button class="btn-pricing btn-pricing-outline" onclick="window.open('https://line.me/ti/p/~@830avuqn')">เลือกแพ็คเกจนี้</button>
+    </div>
+
+    <!-- Featured Card -->
+    <div class="pricing-card featured reveal scale-up">
+      <div class="pricing-badge" style="background: linear-gradient(135deg, #ff8c00, #ffca28); color: #1a202c;">🔥 ยอดนิยมที่สุด</div>
+      <div class="pricing-tier2">จดทะเบียน + บัญชี</div>
+      <div class="pricing-tier">Premium</div>
+      <div class="pricing-price" style="position: relative; display: inline-block;">
+        <span style="display: block; font-size: 1.1rem; color: rgba(255,255,255,0.85); opacity: 1; margin-bottom: 5px;">จดทะเบียนบริษัท</span>
+        <div style="display: flex; align-items: baseline; gap: 8px;">
+          <span class="strikethrough-diagonal" style="font-size: 3rem; color: rgba(255,255,255,0.6);">5,500</span>
+          <!-- <span style="font-size: 4.2rem; color: #ffe05a; line-height: 1; text-shadow: 0 4px 20px rgba(255, 224, 90, 0.4);">0</span> -->
+          <span style="font-size: 1.5rem;">บาท</span>
+        </div>
+        <div style="position: absolute; top: 12px; right: -28px; background: linear-gradient(135deg, #ff4d4f, #d32f2f); color: #fff; font-size: 1.1rem; font-weight: 800; padding: 4px 14px; border-radius: 20px; transform: rotate(12deg); box-shadow: 0 4px 15px rgba(255,77,79,0.5); border: 2px solid #fff; text-shadow: none; z-index: 2; letter-spacing: 0.02em;">ฟรี!</div>
+      </div>
+      <div class="pricing-price" style="position: relative; display: inline-block;">
+        <span style="display: block; font-size: 1.8rem; color: rgba(255,255,255,0.9); opacity: 1; margin-bottom: 5px;"> → 0 บาท</span>
+      </div>
+      <!-- <div class="pricing-desc2">จดทะเบียนบริษัท <span style="font-size: 1.5rem; color: #ffe05a;"><b>ฟรี</b></span> (ปกติ 5,500 บาท) <br>เมื่อทำ<span style="color: #ffe05a;">บัญชีรายเดือน</span>กับเรา</div> -->
+      <div class="pricing-desc2">เมื่อทำบัญชีรายเดือน <span style="color: #ffe05a;"><b>เริ่มต้น <span style="font-size: 2rem; color: #ffe05a;">3,000</span> บาท/เดือน</b></span></div>
+      
+      
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>จองชื่อบริษัท</li>
+        <li>จดทะเบียนบริษัท <span style="color: #ffe05a; font-weight:700;">ครบวงจร</span></li>
+        <li>ขอเลขประจำตัวผู้เสียภาษี (Tax ID)</li>
+        <li>ลงทะเบียนประกันสังคม</li>
+        <li>รหัส RD/DBD</li>
+        <li><span style="color: #ffe05a;">ประเมิน VAT</span> สำหรับบริษัท</li>
+        <li>ยื่นจดทะเบียน VAT</li>
+        <li>ภาพแผนที่บริษัท</li>
+        <li>รายงานการประชุมเปิดบัญชี</li>
+        <li><span>เอกสารสนับสนุนการ<span style="color: #ffe05a;">เปิดบัญชี</span></span></li>
+      </ul>
+      <div class="featured-bonus">
+        <div class="featured-bonus-label">✨ รับสิทธิพิเศษเพิ่มเติม</div> 
+        <!-- <div class="featured-bonus-text"><span style="color: #ffe05a;">ฟรี!</span> ค่าจดทะเบียนบริษัท</div> -->
+         <ul class="pricing-features">
+          <li>คำแนะนำ<span style="color: #ffe05a;">ลดหย่อนภาษี</span></li>
+          <li>รายงานบัญชีประจำเดือน</li>
+          <li><span><span style="color: #ffe05a;">ติดตามภาษี</span>ประจำปี</span></li>
+         </ul>
+      </div>
+      <div style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 10px 14px; margin-bottom: 20px; text-align: center;">
+        <div style="font-size: 0.85rem; color: rgba(255,255,255,0.75); font-weight: 400;">* ไม่รวมค่าธรรมเนียมกรมพัฒนาธุรกิจการค้า</div>
+      </div>
+      <button class="btn-pricing btn-pricing-solid" onclick="window.open('https://line.me/ti/p/~@830avuqn')">เลือกแพ็คเกจนี้ →</button>
+    </div>
+
+    <!-- Premium Card with Blue Top and Orange Details -->
+    <div class="pricing-card reveal scale-up blue-top-orange-details">
+      <div class="pricing-tier2">บัญชีรายเดือน</div>
+      <div class="pricing-tier">Standard</div>
+      <div class="pricing-price"><span style="display: block; font-size: 1.1rem; color: #1a202c; opacity: 1; margin-bottom: 4px;">เริ่มต้น</span>15,000 <span>บาท</span></div>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>จดทะเบียนเครื่องหมายการค้า</li>
+        <li>จดทะเบียนบริษัท</li>
+        <li>จองชื่อบริษัท</li>
+        <li>รหัส RD/DBD</li>
+        <li>จดทะเบียนเครื่องหมายการค้า</li>
+      </ul>
+      <div style="background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 8px; padding: 10px 14px; margin-bottom: 20px; text-align: center;">
+        <div style="font-size: 0.85rem; color: var(--gray-700); font-weight: 400;">* ไม่รวมค่าธรรมเนียมราชการ</div>
+      </div>
+      <button class="btn-pricing btn-pricing-outline" onclick="window.open('https://line.me/ti/p/~@830avuqn')">เลือกแพ็คเกจนี้</button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section id="services">
+  <center>
+    <div class="section-header reveal from-bottom">
+      <span class="section-tag">บริการของเรา</span>
+      <!-- <h2 class="section-title">ครบ ครัน ตรงใจ</h2> -->
+       <h1 style="color: white;">บริการบัญชีและภาษีที่ออกแบบมาเพื่อคนทำธุรกิจ</h2>
+      <!-- <p class="section-sub">บริการบัญชีและภาษีที่ออกแบบมาเพื่อคนทำธุรกิจออนไลน์โดยเฉพาะ</p> -->
+    </div>
+  </center>
+  <div class="services-grid">
+    <div class="service-card reveal from-bottom">
+      <div class="service-icon">
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=500&auto=format&fit=crop" alt="จดทะเบียนบริษัท">
+      </div>
+      <div class="service-name">1.) จดทะเบียนบริษัท</div>
+      <div class="service-desc">จัดการเอกสารครบ ดำเนินการรวดเร็ว จดทะเบียนบริษัท หจก. หรือร้านค้า ไม่ต้องเสียเวลาเอง</div>
+    </div>
+
+    <div class="service-card reveal from-bottom">
+      <div class="service-icon">
+        <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&w=500&auto=format&fit=crop" alt="ทำบัญชีรายเดือน">
+      </div>
+      <div class="service-name">2.) ทำบัญชีรายเดือน</div>
+      <div class="service-desc">บันทึกบัญชีถูกต้องตามมาตรฐาน รายงานการเงินชัดเจน ติดตามกระแสเงินสดได้ทุกเดือน</div>
+    </div>
+
+    <div class="service-card reveal from-bottom">
+      <div class="service-icon">
+        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=500&auto=format&fit=crop" alt="จดทะเบียน VAT">
+      </div>
+      <div class="service-name">3.) จดทะเบียน VAT</div>
+      <div class="service-desc">ดูแลการจด VAT ตั้งแต่ต้นจนได้ใบทะเบียน พร้อมให้คำแนะนำด้านภาษีมูลค่าเพิ่ม</div>
+    </div>
+
+    <div class="service-card reveal from-bottom">
+      <div class="service-icon">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=500&auto=format&fit=crop" alt="ปิดงบการเงิน">
+      </div>
+      <div class="service-name">4.) ปิดงบการเงิน</div>
+      <div class="service-desc">ปิดงบประจำปีถูกต้อง ส่งงบการเงินตรงเวลา พร้อมรายงานผู้ตรวจสอบบัญชี</div>
+    </div>
+
+    <div class="service-card reveal from-bottom">
+      <div class="service-icon">
+        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=500&auto=format&fit=crop" alt="ที่ปรึกษาภาษี">
+      </div>
+      <div class="service-name">5.) ที่ปรึกษาภาษี</div>
+      <div class="service-desc">วางแผนภาษีให้ประหยัด ถูกกฎหมาย คืนภาษีให้มากที่สุด โดย CPA ผู้เชี่ยวชาญ</div>
+    </div>
+
+    <div class="service-card reveal from-bottom">
+      <div class="service-icon">
+        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=500&auto=format&fit=crop" alt="Payroll">
+      </div>
+      <div class="service-name">6.) Payroll & เงินเดือน</div>
+      <div class="service-desc">คำนวณเงินเดือน ภาษีหัก ณ ที่จ่าย และประกันสังคมอย่างถูกต้อง ส่งออกให้พนักงานได้เลย</div>
+    </div>
+
+    <div class="service-card reveal from-bottom">
+      <div class="service-icon">
+        <img src="https://images.unsplash.com/photo-1436450412740-6b988f486c6b?q=80&w=500&auto=format&fit=crop" alt="แก้ไขเปลี่ยนแปลง">
+      </div>
+      <div class="service-name">7.) จด/แก้ไข เปลี่ยนแปลง</div>
+      <div class="service-desc">แก้ไขกรรมการ, ย้ายที่อยู่, เพิ่มทุน หรือเปลี่ยนชื่อบริษัท ดำเนินการที่ DBD ครบวงจร</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESS STEPS ─── -->
+<section id="team">
+  <div class="section-header reveal from-bottom" style="text-align:center;">
+    <span class="section-tag">ขั้นตอนการจดทะเบียน</span>
+    <h2 class="section-title">จดบริษัทง่าย 4 ขั้นตอน</h2>
+    <p style="margin:0 auto;">ครบ จบ ในที่เดียว ทีมผู้เชี่ยวชาญดูแลให้ทุกขั้นตอน</p>
+  </div>
+  <div class="process-wrapper">
+    <div class="process-steps reveal from-bottom">
+
+      <div class="process-step">
+        <div class="process-step-num">1</div>
+        <div class="process-step-card">
+          <div class="process-step-label">ขั้นตอนที่ 1</div>
+          <div class="process-step-title">กรอกแบบฟอร์ม</div>
+          <div class="process-step-sub">แจ้งข้อมูลเบื้องต้น ชื่อบริษัท กรรมการ และทุนจดทะเบียน</div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-num">2</div>
+        <div class="process-step-card">
+          <div class="process-step-label">ขั้นตอนที่ 2</div>
+          <div class="process-step-title">เตรียมเอกสารจัดตั้ง</div>
+          <div class="process-step-sub">ทีมเราจัดเตรียมเอกสารทุกชิ้นให้ครบ ไม่ต้องรู้เรื่องเอง</div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-num">3</div>
+        <div class="process-step-card">
+          <div class="process-step-label">ขั้นตอนที่ 3</div>
+          <div class="process-step-title">ลงนาม</div>
+          <div class="process-step-sub">ลงนามเพียงครั้งเดียว เราดูแลจนจดทะเบียนสำเร็จ</div>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-num">4</div>
+        <div class="process-step-card">
+          <div class="process-step-label">ขั้นตอนที่ 4</div>
+          <div class="process-step-title">รับเอกสารจัดตั้งบริษัทครบ Set</div>
+          <div class="process-step-sub">พร้อมใช้งานได้ทันที ภายใน 1 สัปดาห์</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="process-tagline reveal from-bottom">
+      <h2 class="section-title">"<em>ทั้งหมดนี้ทำเสร็จ</em>ภายใน 1 สัปดาห์"</h2>
+    </div>
+
+    <div class="process-cta reveal from-bottom">
+      <!-- <span class="process-cta-label">ปรึกษาฟรี</span> -->
+      <a href="tel:0828949224" class="btn-process-phone">
+        <span>📞</span> 082-894-9224
+      </a>
+      <a href="https://line.me/ti/p/~@830avuqn" target="_blank" class="btn-process-line">
+        <span>💬</span> ปรึกษาฟรีทาง LINE
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY US ─── -->
+<section id="reviews">
+  <div class="section-header reveal from-bottom">
+    <span class="section-tag">ทำไมต้องเรา</span>
+    <h2 class="section-title">เหตุผลที่คนเลือก NIDA Tax & Accounting</h2>
+  </div>
+
+  <div class="whyus-points">
+    <div class="whyus-point reveal from-bottom">
+      <div class="whyus-point-title">🏆 บริการครบ ไม่ต้องวิ่งหาใครเพิ่ม</div>
+      <div class="whyus-point-desc">จดทะเบียน ทำบัญชี ยื่นภาษี ปิดงบ — จบทุกอย่างที่เดียว<br>ตั้งแต่วันแรกจนธุรกิจโตไปไกล เราอยู่ตรงนี้</div>
+    </div>
+    <div class="whyus-point reveal from-bottom">
+      <div class="whyus-point-title">⚡ รวดเร็ว แม่นยำ ไม่ต้องตามงาน</div>
+      <div class="whyus-point-desc">จดตั้งบริษัทให้ลูกค้าสำเร็จภายใน 1 สัปดาห์<br>ส่งงานตรงเวลา ไม่ให้คุณต้องเป็นฝ่ายตามทุกครั้ง</div>
+    </div>
+    <div class="whyus-point reveal from-bottom">
+      <div class="whyus-point-title">💰 ราคาจับต้องได้ คุ้มค่าทุกบาท</div>
+      <div class="whyus-point-desc">ค่าบริการโปร่งใส ไม่มีค่าใช้จ่ายแอบแฝง<br>ประหยัดภาษีได้มากกว่าค่าบริการที่จ่ายไป — นั่นคือผลลัพธ์ที่เราการันตี</div>
+    </div>
+  </div>
+
+  <div class="whyus-cta reveal from-bottom">
+    <!-- <span class="whyus-cta-label">ปรึกษาฟรี ไม่มีค่าใช้จ่าย</span> -->
+    <a href="tel:0828949224" class="btn-process-phone">
+      <span>📞</span> 082-894-9224
+    </a>
+    <a href="https://line.me/ti/p/~@830avuqn" target="_blank" class="btn-process-line">
+      <span>💬</span> ปรึกษาฟรีทาง LINE
+    </a>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-info reveal from-bottom">
+      <div style="text-align: center;">
+        <span class="section-tag">ติดต่อเรา</span>
+        <h2 class="section-title" style="margin-top:14px;">ปรึกษาฟรี ไม่มีค่าใช้จ่าย</h2>
+        <p style="color:var(--gray-500);font-size:0.95rem;margin-bottom:32px;font-weight:300;">พร้อมตอบทุกคำถามตลอด 24 ชั่วโมง ไม่ว่าธุรกิจคุณจะเล็กหรือใหญ่</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item"><div class="contact-icon">📞</div><div><div class="contact-item-label">โทรศัพท์</div><div class="contact-item-val">082-894-9224</div></div></div>
+        <div class="contact-item"><div class="contact-icon">📧</div><div><div class="contact-item-label">อีเมล</div><div class="contact-item-val">chanida.vivigift@gmail.com</div></div></div>
+        <div class="contact-item"><div class="contact-icon">💬</div><div><div class="contact-item-label">LINE Official</div><div class="contact-item-val">830avuqn</div></div></div>
+        <div class="contact-item"><div class="contact-icon">🕐</div><div><div class="contact-item-label">เวลาทำการ</div><div class="contact-item-val">จ–ศ 09:00–20:00</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Nida Tax <span>& Accounting</span></div>
+      <div class="footer-tagline">จดง่าย ได้จริง บริการครบครัน ราคาเป็นธรรม</div>
+      <div class="footer-social">
+        <a href="https://line.me/ti/p/~@830avuqn" target="_blank" title="LINE">💬</a>
+        <a href="#" title="Facebook">f</a>
+        <a href="mailto:chanida.vivigift@gmail.com" title="Email">✉</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>บริการ</h4>
+      <ul>
+        <li><a href="#services">จดทะเบียนบริษัท</a></li>
+        <li><a href="#services">ทำบัญชีรายเดือน</a></li>
+        <li><a href="#services">จดทะเบียน VAT</a></li>
+        <li><a href="#services">ปิดงบการเงิน</a></li>
+        <li><a href="#services">ที่ปรึกษาภาษี</a></li>
+        <li><a href="#services">Payroll</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>ข้อมูล</h4>
+      <ul>
+        <li><a href="#why">เกี่ยวกับเรา</a></li>
+        <li><a href="#pricing">แพ็คเกจราคา</a></li>
+        <li><a href="#team">ทีมงาน</a></li>
+        <li><a href="#reviews">รีวิว</a></li>
+        <li><a href="#contact">ติดต่อเรา</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>เวลาทำการ</h4>
+      <div class="footer-hours">
+        จันทร์ – ศุกร์<br><strong style="color:#fff;">09:00 – 20:00</strong><br>
+        เสาร์ - อาทิตย์<br>หยุดทำการ
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2567 NIDA Tax & Accounting. สงวนลิขสิทธิ์.</div>
+    <div class="footer-links"><a href="privacy-policy.html">Privacy Policy</a><a href="#">Terms of Service</a></div>
+  </div>
+</footer>
+
+<!-- ─── COOKIE BANNER HTML ─── -->
+<div id="cookie-banner" role="dialog" aria-label="การยินยอมคุกกี้">
+  <div class="cookie-inner">
+    <div class="cookie-icon">🍪</div>
+    <div class="cookie-text">
+      <h4>เว็บไซต์นี้ใช้คุกกี้</h4>
+      <p>
+        เราใช้คุกกี้เพื่อปรับปรุงประสบการณ์การใช้งานของคุณ
+        คุณสามารถเลือกยอมรับคุกกี้ทั้งหมด หรือตั้งค่าเฉพาะส่วนที่คุณต้องการได้
+        <a href="privacy-policy.html" target="_blank">อ่านนโยบายคุกกี้</a>
+      </p>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn-cookie-settings" onclick="openCookieModal()">⚙️ ตั้งค่า</button>
+      <button class="btn-cookie-reject" onclick="rejectCookies()">ปฏิเสธ</button>
+      <button class="btn-cookie-accept" onclick="acceptAllCookies()">✓ ยอมรับทั้งหมด</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── COOKIE MODAL HTML ─── -->
+<div id="cookie-modal" role="dialog" aria-modal="true">
+  <div class="cookie-modal-box">
+    <h3>⚙️ ตั้งค่าความเป็นส่วนตัว</h3>
+    <p>เลือกประเภทคุกกี้ที่คุณยินยอมให้เราใช้ คุณสามารถเปลี่ยนแปลงได้ตลอดเวลา</p>
+
+    <div class="cookie-toggle-row">
+      <div class="cookie-toggle-info">
+        <strong>🔒 คุกกี้ที่จำเป็น</strong>
+        <span>จำเป็นสำหรับการทำงานของเว็บไซต์</span>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" checked disabled>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="cookie-toggle-row">
+      <div class="cookie-toggle-info">
+        <strong>📊 คุกกี้เพื่อการวิเคราะห์</strong>
+        <span>ช่วยให้เราเข้าใจการใช้งานเพื่อปรับปรุงบริการ</span>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="cookie-analytics">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="cookie-toggle-row">
+      <div class="cookie-toggle-info">
+        <strong>📣 คุกกี้เพื่อการตลาด</strong>
+        <span>ใช้แสดงเนื้อหาและโฆษณาที่ตรงใจคุณ</span>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="cookie-marketing">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="cookie-modal-btns">
+      <button class="btn-modal-save" onclick="saveSettings()">บันทึกการตั้งค่า</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ── NAV ── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+  });
+  document.getElementById('hamburger').addEventListener('click', function() {
+    document.getElementById('navbar').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId.startsWith('#')) {
+        e.preventDefault(); // ปิดการกระโดดวาร์ปแบบปกติ
+        const targetEl = document.querySelector(targetId);
+        if (targetEl) {
+          const headerOffset = 64; // ความสูงเมนูด้านบน
+          const elementPosition = targetEl.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.scrollY - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' }); // บังคับสมูทสกอร์ลด้วย JS
+        }
+        document.getElementById('navbar').classList.remove('open');
+      }
+    });
+  });
+
+  /* ── PARALLAX HERO BLOBS ── */
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    const blob1 = document.querySelector('.blob1');
+    const blob2 = document.querySelector('.blob2');
+    const blob3 = document.querySelector('.blob3');
+    if (blob1) blob1.style.transform = `translateY(${y * 0.18}px)`;
+    if (blob2) blob2.style.transform = `translateY(${-y * 0.12}px)`;
+    if (blob3) blob3.style.transform = `translateY(${y * 0.08}px)`;
+  }, { passive: true });
+
+  /* ── SCROLL REVEAL with stagger ── */
+  const revealObserver = new IntersectionObserver((entries) => {
+    // group entries that fire together and stagger them
+    const visible = entries.filter(e => e.isIntersecting);
+    visible.forEach((entry) => {
+      const el = entry.target;
+      // find index among reveal siblings in same parent
+      const sibs = Array.from(el.parentElement.querySelectorAll(':scope > .reveal'));
+      const idx = sibs.indexOf(el);
+      const delay = idx >= 0 ? idx * 100 : 0;
+      setTimeout(() => el.classList.add('visible'), delay);
+      revealObserver.unobserve(el);
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ── COUNTER ── */
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.count);
+      const suffix = el.dataset.suffix || '';
+      const dur = 1600;
+      const start = performance.now();
+      const tick = (now) => {
+        const p = Math.min((now - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(ease * target) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      counterObs.unobserve(el);
+    });
+  }, { threshold: 0.8 });
+  document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+
+  /* ── ACTIVE NAV LINK ON SCROLL ── */
+  const sections = document.querySelectorAll('section');
+  const navItems = document.querySelectorAll('.nav-links a');
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const currentId = entry.target.getAttribute('id');
+        navItems.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${currentId}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { threshold: 0.3, rootMargin: "-64px 0px 0px 0px" }); // เช็คเมื่อ section เลื่อนมาแสดงผลอย่างน้อย 30% ของจอ
+
+  sections.forEach(section => navObserver.observe(section));
+
+  /* ── COOKIE BANNER SCRIPT ── */
+  (function() {
+    const CONSENT_KEY = 'nida_cookie_consent';
+    const banner = document.getElementById('cookie-banner');
+    const modal = document.getElementById('cookie-modal');
+
+    const getConsent = () => JSON.parse(localStorage.getItem(CONSENT_KEY));
+    const setConsent = (val) => {
+      localStorage.setItem(CONSENT_KEY, JSON.stringify({...val, timestamp: new Date().toISOString()}));
+      banner.classList.remove('show');
+      modal.classList.remove('show');
+    };
+
+    window.openCookieModal = () => {
+      const consent = getConsent() || {};
+      document.getElementById('cookie-analytics').checked = !!consent.analytics;
+      document.getElementById('cookie-marketing').checked = !!consent.marketing;
+      modal.classList.add('show');
+    };
+
+    window.acceptAllCookies = () => {
+      setConsent({ necessary: true, analytics: true, marketing: true });
+      console.log('Accepted all cookies');
+    };
+
+    window.rejectCookies = () => {
+      setConsent({ necessary: true, analytics: false, marketing: false });
+    };
+
+    window.saveSettings = () => {
+      setConsent({
+        necessary: true,
+        analytics: document.getElementById('cookie-analytics').checked,
+        marketing: document.getElementById('cookie-marketing').checked
+      });
+    };
+
+    // Close modal on outside click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('show');
+    });
+
+    // Init: Show banner if no consent
+    if (!getConsent()) {
+      setTimeout(() => banner.classList.add('show'), 1200);
+    }
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>นโยบายความเป็นส่วนตัว | NIDA Tax & Accounting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #0066cc;
+      --blue-dark: #004fa3;
+      --blue-light: #e8f2ff;
+      --blue-mid: #1a7de8;
+      --white: #fafcff;
+      --gray-100: #f4f6fb;
+      --gray-200: #e8ecf4;
+      --gray-500: #8a94a8;
+      --gray-700: #4a5568;
+      --gray-900: #1a202c;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow: 0 4px 24px rgba(0,102,204,0.10);
+      --shadow-lg: 0 8px 40px rgba(0,102,204,0.16);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Prompt', sans-serif;
+      background: var(--white);
+      color: var(--gray-900);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,252,255,0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 0 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+      box-shadow: var(--shadow);
+    }
+    .nav-logo {
+      font-size: 1.25rem; font-weight: 700; color: var(--blue);
+      letter-spacing: -0.02em;
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gray-700); font-weight: 400; }
+
+    /* ─── HERO BANNER ─── */
+    .page-hero {
+      background: linear-gradient(160deg, rgba(0,30,80,0.95) 0%, rgba(0,79,163,0.92) 100%);
+      padding: 120px 5vw 60px;
+      text-align: center;
+    }
+    .page-hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: #fff; border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 30px; padding: 6px 18px;
+      font-size: 0.82rem; font-weight: 500; margin-bottom: 20px;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700; color: #fff;
+      margin-bottom: 14px;
+    }
+    .page-hero p {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem; font-weight: 300;
+      max-width: 600px; margin: 0 auto;
+    }
+    .page-hero-meta {
+      margin-top: 24px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* ─── CONTENT ─── */
+    .content-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 5vw 80px;
+    }
+
+    /* TOC */
+    .toc {
+      background: var(--blue-light);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-bottom: 48px;
+    }
+    .toc h3 {
+      font-size: 0.95rem; font-weight: 600; color: var(--blue);
+      margin-bottom: 14px; letter-spacing: 0.02em;
+    }
+    .toc ol {
+      padding-left: 20px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .toc ol li a {
+      text-decoration: none; color: var(--gray-700);
+      font-size: 0.9rem; transition: color 0.2s;
+    }
+    .toc ol li a:hover { color: var(--blue); }
+
+    /* SECTIONS */
+    .policy-section {
+      margin-bottom: 48px;
+      scroll-margin-top: 80px;
+    }
+    .policy-section h2 {
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--blue-dark);
+      border-left: 4px solid var(--blue);
+      padding-left: 14px;
+      margin-bottom: 18px;
+      line-height: 1.4;
+    }
+    .policy-section h3 {
+      font-size: 1rem; font-weight: 600;
+      color: var(--gray-900);
+      margin: 22px 0 10px;
+    }
+    .policy-section p {
+      color: var(--gray-700);
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+      font-weight: 300;
+    }
+    .policy-section ul {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 8px;
+      margin-bottom: 14px;
+    }
+    .policy-section ul li {
+      display: flex; gap: 10px;
+      font-size: 0.93rem; color: var(--gray-700);
+      font-weight: 300;
+    }
+    .policy-section ul li::before {
+      content: "•";
+      color: var(--blue);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      background: var(--blue-light);
+      border-radius: var(--radius-sm);
+      border: 1px solid #c5dcf7;
+      padding: 20px 24px;
+      margin: 18px 0;
+    }
+    .highlight-box p {
+      margin-bottom: 0 !important;
+      font-size: 0.9rem !important;
+      color: var(--blue-dark) !important;
+      font-weight: 400 !important;
+    }
+
+    /* CONTACT CARD */
+    .contact-card {
+      background: linear-gradient(135deg, #0066cc 0%, #004fa3 100%);
+      border-radius: var(--radius);
+      padding: 32px;
+      color: #fff;
+      margin-top: 48px;
+    }
+    .contact-card h3 {
+      font-size: 1.1rem; font-weight: 700; margin-bottom: 6px;
+    }
+    .contact-card p {
+      font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 20px;
+      font-weight: 300;
+    }
+    .contact-card-rows {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .contact-card-row {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.9rem;
+    }
+    .contact-card-row span:first-child { font-size: 1.1rem; }
+
+    /* DIVIDER */
+    hr.section-div {
+      border: none;
+      border-top: 1px solid var(--gray-200);
+      margin: 40px 0;
+    }
+
+    /* PLACEHOLDER */
+    .placeholder {
+      background: #fff8e1;
+      border: 1px dashed #f0c040;
+      border-radius: 6px;
+      padding: 2px 8px;
+      color: #b8860b;
+      font-size: 0.88em;
+      display: inline;
+    }
+
+    /* COOKIE TABLE */
+    .cookie-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 0.88rem;
+    }
+    .cookie-table th {
+      background: var(--blue-dark);
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 500;
+    }
+    .cookie-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--gray-200);
+      color: var(--gray-700);
+      font-weight: 300;
+      vertical-align: top;
+    }
+    .cookie-table tr:nth-child(even) td { background: var(--gray-100); }
+
+    /* FOOTER */
+    footer {
+      background: var(--gray-900);
+      padding: 28px 5vw;
+      text-align: center;
+    }
+    footer p { color: var(--gray-500); font-size: 0.82rem; font-weight: 300; }
+    footer a { color: var(--blue-mid); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .content-wrap { padding: 40px 4vw 60px; }
+      .cookie-table { font-size: 0.78rem; }
+      .contact-card { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    Nida Tax <span>& Accounting</span>
+  </a>
+  <a href="index.html" style="font-size:0.85rem;color:var(--gray-700);text-decoration:none;font-weight:500;">← กลับหน้าหลัก</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-badge">📄 เอกสารทางกฎหมาย</div>
+  <h1>นโยบายความเป็นส่วนตัว<br>& นโยบายคุกกี้</h1>
+  <p>NIDA Tax & Accounting ให้ความสำคัญกับการคุ้มครองข้อมูลส่วนบุคคลของคุณ<br>โปรดอ่านนโยบายนี้เพื่อทำความเข้าใจแนวปฏิบัติของเรา</p>
+  <div class="page-hero-meta">อัปเดตล่าสุด: 29 เมษายน 2569<!-- <span class="placeholder">29 เมษายน 2569</span> --></div>
+</div>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <!-- TOC -->
+  <div class="toc">
+    <h3>📋 สารบัญ</h3>
+    <ol>
+      <li><a href="#s1">1. ข้อมูลทั่วไปเกี่ยวกับผู้ควบคุมข้อมูล</a></li>
+      <li><a href="#s2">2. ข้อมูลส่วนบุคคลที่เราเก็บรวบรวม</a></li>
+      <li><a href="#s3">3. วัตถุประสงค์ในการใช้ข้อมูล</a></li>
+      <li><a href="#s4">4. ระยะเวลาในการเก็บรักษาข้อมูล</a></li>
+      <li><a href="#s5">5. การเปิดเผยข้อมูลแก่บุคคลที่สาม</a></li>
+      <li><a href="#s6">6. สิทธิ์ของเจ้าของข้อมูล</a></li>
+      <li><a href="#s7">7. นโยบายคุกกี้ (Cookie Policy)</a></li>
+      <li><a href="#s8">8. ความปลอดภัยของข้อมูล</a></li>
+      <li><a href="#s9">9. การเปลี่ยนแปลงนโยบาย</a></li>
+      <li><a href="#s10">10. ช่องทางติดต่อ</a></li>
+    </ol>
+  </div>
+
+  <!-- S1 -->
+  <div class="policy-section" id="s1">
+    <h2>1. ข้อมูลทั่วไปเกี่ยวกับผู้ควบคุมข้อมูล</h2>
+    <p>นโยบายความเป็นส่วนตัวฉบับนี้จัดทำขึ้นโดย <strong>NIDA Tax & Accounting</strong> สำนักงานบัญชีสำหรับธุรกิจออนไลน์และผู้ประกอบการยุคใหม่ โดยมีรายละเอียดดังนี้</p>
+    <ul>
+      <li>ชื่อกิจการ: <strong>NIDA Tax & Accounting</strong></li>
+      <li>ที่อยู่: 70/29 ซอย เพชรบุรี 7 แขวงทุ่งพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</li>
+      <li>โทรศัพท์: 082-894-9224</li>
+      <li>อีเมล: chanida.vivigift@gmail.com</li>
+      <li>LINE Official: 830avuqn</li>
+    </ul>
+    <div class="highlight-box">
+      <p>นโยบายนี้ครอบคลุมการใช้งานเว็บไซต์ การติดต่อผ่านช่องทางต่างๆ และการให้บริการทั้งหมดของ NIDA Tax & Accounting ภายใต้พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA)</p>
+    </div>
+  </div>
+
+  <hr class="section-div">
+
+  <!-- S2 -->
+  <div class="policy-section" id="s2">
+    <h2>2. ข้อมูลส่วนบุคคลที่เราเก็บรวบรวม</h2>
+    <p>เมื่อคุณใช้บริการหรือติดต่อกับเรา เราอาจเก็บรวบรวมข้อมูลส่วนบุคคลของคุณดังต่อไปนี้</p>
+
+    <h3>ข้อมูลที่คุณให้ไว้โดยตรง</h3>
+    <ul>
+      <li>ชื่อ-นามสกุล</li>
+      <li>เบอร์โทรศัพท์</li>
+      <li>อีเมล</li>
+      <li>ข้อมูลเกี่ยวกับธุรกิจและประเภทกิจการของคุณ</li>
+      <li>ข้อความและรายละเอียดที่คุณส่งมาผ่านแบบฟอร์มติดต่อ LINE หรือช่องทางอื่น</li>
+    </ul>
+
+    <h3>ข้อมูลที่เก็บอัตโนมัติเมื่อเยี่ยมชมเว็บไซต์</h3>
+    <ul>
+      <li>IP Address และข้อมูลเบราว์เซอร์</li>
+      <li>หน้าที่เข้าชม ระยะเวลาที่อยู่บนเว็บ และเส้นทางการใช้งาน</li>
+      <li>ข้อมูลจากคุกกี้และเทคโนโลยีที่คล้ายคลึงกัน (รายละเอียดในข้อ 7)</li>
+      <li>อุปกรณ์และระบบปฏิบัติการที่ใช้งาน</li>
+    </ul>
+
+    <p>เราไม่เก็บข้อมูลส่วนบุคคลที่ละเอียดอ่อน เช่น เชื้อชาติ ศาสนา ข้อมูลสุขภาพ หรือข้อมูลทางการเงินโดยตรง ยกเว้นกรณีที่จำเป็นต่อการให้บริการและได้รับความยินยอมอย่างชัดแจ้งจากคุณแล้ว</p>
+  </div>
+
+  <hr class="section-div">
+
+  <!-- S3 -->
+  <div class="policy-section" id="s3">
+    <h2>3. วัตถุประสงค์ในการใช้ข้อมูล</h2>
+    <p>เราใช้ข้อมูลส่วนบุคคลของคุณเพื่อวัตถุประสงค์ดังต่อไปนี้</p>
+    <ul>
+      <li><strong>เพื่อให้บริการ</strong> — ตอบคำถาม ให้คำปรึกษา และดำเนินงานตามที่ตกลงกัน</li>
+      <li><strong>เพื่อการติดต่อสื่อสาร</strong> — แจ้งนัดหมาย ส่งเอกสาร และอัปเดตสถานะงาน</li>
+      <li><strong>เพื่อปรับปรุงบริการ</strong> — วิเคราะห์พฤติกรรมการใช้เว็บไซต์เพื่อพัฒนาประสบการณ์ผู้ใช้</li>
+      <li><strong>เพื่อวัตถุประสงค์ทางการตลาด</strong> — ส่งข้อมูลข่าวสาร โปรโมชัน หรือบทความที่เป็นประโยชน์ (เฉพาะเมื่อได้รับความยินยอมจากคุณแล้ว)</li>
+      <li><strong>เพื่อปฏิบัติตามกฎหมาย</strong> — ปฏิบัติตามข้อกำหนดทางกฎหมายและระเบียบราชการที่เกี่ยวข้อง</li>
+    </ul>
+    <div class="highlight-box">
+      <p>เราจะไม่นำข้อมูลส่วนบุคคลของคุณไปใช้เพื่อวัตถุประสงค์อื่นนอกเหนือจากที่ระบุไว้ข้างต้น โดยไม่ได้รับความยินยอมจากคุณก่อน</p>
+    </div>
+  </div>
+
+  <hr class="section-div">
+
+  <!-- S4 -->
+  <div class="policy-section" id="s4">
+    <h2>4. ระยะเวลาในการเก็บรักษาข้อมูล</h2>
+    <p>เราเก็บรักษาข้อมูลส่วนบุคคลของคุณไว้ตราบเท่าที่จำเป็นต่อการให้บริการและปฏิบัติตามกฎหมาย</p>
+    <ul>
+      <li>ข้อมูลลูกค้าที่ใช้บริการ: เก็บไว้ตลอดระยะเวลาความสัมพันธ์ทางธุรกิจ และ <strong>5 ปี</strong> หลังสิ้นสุดสัญญา (ตามกฎหมายบัญชีและภาษีไทย)</li>
+      <li>ข้อมูลผู้เยี่ยมชมเว็บไซต์และคุกกี้: ไม่เกิน 12 เดือน</li>
+      <li>ข้อมูลที่ส่งผ่านแบบฟอร์มติดต่อ: ไม่เกิน 1 ปี หรือจนกว่าจะเสร็จสิ้นการติดต่อ</li>
+    </ul>
+    <p>เมื่อพ้นระยะเวลาดังกล่าว เราจะลบหรือทำให้ข้อมูลอยู่ในรูปแบบที่ไม่สามารถระบุตัวตนได้</p>
+  </div>
+
+  <hr class="section-div">
+
+  <!-- S5 -->
+  <div class="policy-section" id="s5">
+    <h2>5. การเปิดเผยข้อมูลแก่บุคคลที่สาม</h2>
+    <p>เราจะไม่ขายหรือเปิดเผยข้อมูลส่วนบุคคลของคุณแก่บุคคลภายนอก ยกเว้นกรณีดังต่อไปนี้</p>
+    <ul>
+      <li><strong>ผู้ให้บริการที่ทำงานร่วมกับเรา</strong> — เช่น ผู้ให้บริการระบบคลาวด์ ระบบอีเมล และเครื่องมือวิเคราะห์เว็บ ซึ่งผูกพันด้วยสัญญารักษาความลับ</li>
+      <li><strong>หน่วยงานราชการ</strong> — เมื่อมีคำสั่งศาล หมายเรียก หรือตามที่กฎหมายกำหนด</li>
+      <li><strong>กรณีที่คุณให้ความยินยอม</strong> — เราจะเปิดเผยข้อมูลเฉพาะเมื่อคุณอนุญาตอย่างชัดแจ้งเท่านั้น</li>
+    </ul>
+    <h3>บริการของบุคคลที่สามที่เราใช้</h3>
+    <ul>
+      <li>Google Analytics — เพื่อวิเคราะห์สถิติการใช้งานเว็บไซต์</li>
+      <li>Google Fonts — เพื่อโหลดฟอนต์สำหรับแสดงผลเว็บไซต์</li>
+      <li>LINE Official Account — เพื่อช่องทางการสื่อสารกับลูกค้า</li>
+    </ul>
+  </div>
+
+  <hr class="section-div">
+
+  <!-- S6 -->
+  <div class="policy-section" id="s6">
+    <h2>6. สิทธิ์ของเจ้าของข้อมูล</h2>
+    <p>ภายใต้ พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 คุณมีสิทธิ์ดังต่อไปนี้</p>
+    <ul>
+      <li><strong>สิทธิ์เข้าถึงข้อมูล</strong> — ขอดูข้อมูลส่วนบุคคลของคุณที่เราเก็บไว้</li>
+      <li><strong>สิทธิ์แก้ไขข้อมูล</strong> — ขอให้แก้ไขข้อมูลที่ไม่ถูกต้องหรือไม่ครบถ้วน</li>
+      <li><strong>สิทธิ์ลบข้อมูล</strong> — ขอให้ลบข้อมูลของคุณ ในกรณีที่ไม่จำเป็นต้องเก็บไว้อีกต่อไป</li>
+      <li><strong>สิทธิ์ขอให้ระงับการใช้</strong> — ขอให้หยุดใช้ข้อมูลชั่วคราวในบางกรณี</li>
+      <li><strong>สิทธิ์คัดค้าน</strong> — คัดค้านการประมวลผลข้อมูลเพื่อวัตถุประสงค์บางอย่าง เช่น การตลาด</li>
+      <li><strong>สิทธิ์ถอนความยินยอม</strong> — ถอนความยินยอมที่เคยให้ไว้ได้ทุกเมื่อ โดยไม่กระทบต่อการประมวลผลที่ผ่านมา</li>
+      <li><strong>สิทธิ์โอนข้อมูล</strong> — ขอรับข้อมูลของคุณในรูปแบบที่เครื่องอ่านได้</li>
+    </ul>
+    <p>หากต้องการใช้สิทธิ์ดังกล่าว กรุณาติดต่อเราผ่านช่องทางในข้อ 10 เราจะดำเนินการภายใน <strong>30 วัน</strong> นับจากวันที่ได้รับคำขอ</p>
+  </div>
+
+  <hr class="section-div">
+
+  <!-- S7 -->
+  <div class="policy-section" id="s7">
+    <h2>7. นโยบายคุกกี้ (Cookie Policy)</h2>
+    <p>นโยบายคุกกี้ฉบับนี้อธิบายความหมายและวิธีการใช้คุกกี้บนเว็บไซต์ของ NIDA Tax & Accounting</p>
+
+    <h3>คุกกี้คืออะไร?</h3>
+    <p>คุกกี้ คือ ไฟล์ข้อมูลขนาดเล็กที่ถูกบันทึกลงในอุปกรณ์ของคุณเมื่อเยี่ยมชมเว็บไซต์ โดยคุกกี้จะถูกส่งกลับมายังเว็บไซต์ในการเยี่ยมชมครั้งถัดไป ช่วยให้เว็บไซต์จดจำการตั้งค่าและพฤติกรรมของคุณได้</p>
+
+    <h3>ประเภทของคุกกี้ที่เราใช้</h3>
+    <table class="cookie-table">
+      <thead>
+        <tr>
+          <th>ประเภท</th>
+          <th>ชื่อคุกกี้</th>
+          <th>วัตถุประสงค์</th>
+          <th>อายุ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>จำเป็น</strong><br>(Strictly Necessary)</td>
+          <td>cookie_consent</td>
+          <td>จดจำการยินยอมคุกกี้ของคุณ</td>
+          <td>1 ปี</td>
+        </tr>
+        <tr>
+          <td><strong>วิเคราะห์</strong><br>(Analytics)</td>
+          <td>_ga, _gid<br>(Google Analytics)</td>
+          <td>วิเคราะห์สถิติผู้เยี่ยมชมเว็บไซต์ เพื่อปรับปรุงบริการ</td>
+          <td>2 ปี / 24 ชม.</td>
+        </tr>
+        <!-- <tr>
+          <td><strong>การตลาด</strong><br>(Marketing)</td>
+          <td><span class="placeholder">........</span></td>
+          <td>แสดงโฆษณาที่เกี่ยวข้องกับความสนใจของคุณ</td>
+          <td><span class="placeholder">........</span></td>
+        </tr> -->
+      </tbody>
+    </table>
+
+    <h3>การจัดการคุกกี้</h3>
+    <p>คุณสามารถจัดการหรือปฏิเสธคุกกี้ได้ผ่าน</p>
+    <ul>
+      <li>แบนเนอร์คุกกี้ที่ปรากฏเมื่อเข้าเว็บไซต์ครั้งแรก</li>
+      <li>การตั้งค่าเบราว์เซอร์ของคุณ (Chrome / Safari / Firefox / Edge)</li>
+    </ul>
+    <div class="highlight-box">
+      <p>⚠️ หากคุณปฏิเสธคุกกี้ที่จำเป็น บางส่วนของเว็บไซต์อาจทำงานได้ไม่สมบูรณ์</p>
+    </div>
+  </div>
+
+  <hr class="section-div">
+
+  <!-- S8 -->
+  <div class="policy-section" id="s8">
+    <h2>8. ความปลอดภัยของข้อมูล</h2>
+    <p>เราใช้มาตรการทางเทคนิคและการบริหารจัดการที่เหมาะสมเพื่อปกป้องข้อมูลส่วนบุคคลของคุณจากการเข้าถึง การเปิดเผย การแก้ไข หรือการทำลายโดยไม่ได้รับอนุญาต ซึ่งรวมถึง</p>
+    <ul>
+      <li>การเข้ารหัสข้อมูลผ่าน SSL/TLS บนเว็บไซต์</li>
+      <li>การจำกัดสิทธิ์การเข้าถึงข้อมูลเฉพาะผู้ที่จำเป็นต้องใช้เท่านั้น</li>
+      <li>การสำรองข้อมูลและระบบกู้คืนข้อมูลสม่ำเสมอ</li>
+    </ul>
+    <p>อย่างไรก็ตาม ไม่มีการส่งข้อมูลผ่านอินเทอร์เน็ตใดที่ปลอดภัย 100% เราจึงไม่สามารถรับประกันความปลอดภัยอย่างสมบูรณ์แบบได้ หากคุณพบเหตุการณ์ผิดปกติใดๆ โปรดแจ้งให้เราทราบทันที</p>
+  </div>
+
+  <hr class="section-div">
+
+  <!-- S9 -->
+  <div class="policy-section" id="s9">
+    <h2>9. การเปลี่ยนแปลงนโยบาย</h2>
+    <p>เราอาจปรับปรุงนโยบายความเป็นส่วนตัวฉบับนี้เป็นครั้งคราวเพื่อให้สอดคล้องกับการเปลี่ยนแปลงของกฎหมายหรือการดำเนินงาน โดยจะแจ้งให้คุณทราบผ่านเว็บไซต์และระบุวันที่อัปเดตล่าสุดไว้ที่ด้านบนของนโยบายนี้</p>
+    <p>การที่คุณยังคงใช้งานเว็บไซต์หลังจากการเปลี่ยนแปลง ถือว่าคุณยอมรับนโยบายฉบับใหม่แล้ว</p>
+  </div>
+
+  <hr class="section-div">
+
+  <!-- S10 -->
+  <div class="policy-section" id="s10">
+    <h2>10. ช่องทางติดต่อและการร้องเรียน</h2>
+    <p>หากคุณมีคำถาม ข้อสงสัย หรือต้องการใช้สิทธิ์เกี่ยวกับข้อมูลส่วนบุคคล สามารถติดต่อเราได้ผ่านช่องทางดังนี้</p>
+
+    <div class="contact-card">
+      <h3>📬 ติดต่อเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล</h3>
+      <p>NIDA Tax & Accounting — สำนักงานบัญชีของคนขายออนไลน์</p>
+      <div class="contact-card-rows">
+        <div class="contact-card-row"><span>📞</span><span>082-894-9224</span></div>
+        <div class="contact-card-row"><span>📧</span><span>chanida.vivigift@gmail.com</span></div>
+        <div class="contact-card-row"><span>💬</span><span>LINE Official: 830avuqn</span></div>
+        <div class="contact-card-row"><span>🕐</span><span>จ–ศ 09:00–17:30 น.</span></div>
+        <div class="contact-card-row"><span>📍</span><span>70/29 ซอย เพชรบุรี 7 แขวงทุ่งพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</span></div>
+      </div>
+    </div>
+
+    <p style="margin-top:24px;">หากคุณเห็นว่าการประมวลผลข้อมูลส่วนบุคคลของเราไม่เป็นไปตามกฎหมาย คุณมีสิทธิ์ยื่นเรื่องร้องเรียนต่อ <strong>สำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล (PDPC)</strong> ได้ที่ <a href="https://www.pdpc.or.th" target="_blank" style="color:var(--blue);">www.pdpc.or.th</a></p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2567 NIDA Tax & Accounting. สงวนลิขสิทธิ์. | <a href="index.html">หน้าหลัก</a> | <a href="privacy-policy.html">Privacy Policy</a></p>
+</footer>
+
+</body>
+</html>
